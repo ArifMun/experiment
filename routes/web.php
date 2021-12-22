@@ -65,8 +65,12 @@ Route::get('/blog/diary', [BlogPersonalController::class, 'diary']);
 //daring
 Route::get('/users', [UserController::class, 'index']);
 //validasi
-Route::POST('/users/proses_tambah_data_pengguna', [UserController::class, 'proses_tambah_data']); //proses menyimpan data users
 Route::GET('/users/tambah_data', [UserController::class, 'tambah_data']); //menampilkan form input
+Route::POST('/users/proses_tambah_data_pengguna', [UserController::class, 'proses_tambah_data']); //proses menyimpan data users
+//menampilkan form ubah data user
+Route::GET('users/ubah-data/{id}',[UserController::class,'edit_data']);
+//proses ubah data user
+Route::POST('users/ubah-data-pengguna',[UserController::class,'ubah_data']);
 //teori tugas
 Route::get('/tabel_mahasiswa', [MhsController::class, 'index']);
 

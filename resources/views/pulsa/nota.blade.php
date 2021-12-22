@@ -18,7 +18,9 @@ td {
 </style>
 
 <body>
-    <h1>Pengisian Pulsa Berhasil</h1>
+    @if ($message = Session::get('success'))
+    <div class="message"><span style="color:red">{{$message}}</span></div>
+    @endif
     <table>
         <tr>
             <th>No Hp</th>

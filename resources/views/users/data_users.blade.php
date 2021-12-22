@@ -18,6 +18,9 @@
 
 </style>
 
+@if (session('berhasil'))
+{{ session('berhasil') }}
+@endif
 
 <body>
     <table>
@@ -27,6 +30,7 @@
             <th>Email</th>
             <th>Username</th>
             <th>No Telepon</th>
+            <th>Option</th>
         </tr>
         <?php $no = 1; ?>
         @foreach($data as $users)
@@ -36,6 +40,7 @@
             <td>{{$users->email}}</td>
             <td>{{$users->username}}</td>
             <td>{{$users->phone}}</td>
+            <td><a href="users/ubah-data/{{ $users->id }}">ubah</a></td>
         </tr>
         @endforeach
     </table>

@@ -14,7 +14,6 @@ class PulsaController extends Controller
             ->orderBy('created_at', 'desc')
             // ->select('nama_provider', 'no_hp', 'nominal_pulsa', 'saldo')
             // 'nama_provider', 'no_hp', 'nominal_pulsa', 'saldo'
-            ->limit(1)
             ->first();
         // ->get();
         // print_r($data); cek data yang masuk
@@ -56,7 +55,7 @@ class PulsaController extends Controller
             $saldo = $request->input('saldo');
 
             if ($saldo < $nominal_pulsa) {
-                return ('saldo kurang');
+                return redirect('/form/isi_pulsa')->with(['success' => 'UANG ANDA KURANG']);
             }
 
             DB::table('pulsa')->insert([
@@ -67,7 +66,7 @@ class PulsaController extends Controller
                 'created_at' => date('Y-m-d H:i:s')
             ]);
 
-            return redirect('/form/nota/hasil')->with('berhasil');
+            return redirect('/form/nota/hasil')->with(['success' => 'Pulsa Berhasil Diisi']);
         }
     }
 }
