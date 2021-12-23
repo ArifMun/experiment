@@ -75,7 +75,7 @@
             </select>
         </div>
         <div class="row mb-1 col-14">
-            <button type="submit" class="btn btn-primary">Ubah Data</button>
+            <button type="submit" class="btn btn-primary"> Ubah Data</button>
         </div>
     </form>
 

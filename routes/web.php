@@ -75,7 +75,9 @@ Route::POST('users/ubah-data-pengguna',[UserController::class,'ubah_data']);
 Route::GET('users/hapus-data/{id}',[UserController::class,'hapus_data']);
 
 //teori tugas
-Route::get('/tabel_mahasiswa', [MhsController::class, 'index']);
+Route::GET('/tabel_mahasiswa', [MhsController::class, 'index']);
+Route::GET('/tabel_mahasiswa/proses/{id}', [MhsController::class, 'edit_data']);
+Route::POST('/tabel_mahasiswa/proses/ubah', [MhsController::class, 'ubah_data_mahasiswa']);
 
 //pulsa
 Route::GET('/form/isi_pulsa', [PulsaController::class, 'tambah_pulsa']);
