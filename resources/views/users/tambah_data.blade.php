@@ -26,54 +26,60 @@
         /* font-size: 10px */
     }
 
+    input {
+        display: flex;
+        justify-content: center;
+    }
+
 </style>
 
 <body>
     <form action="/users/proses_tambah_data_pengguna" method="POST">
+        <h3 class="text-center">TAMBAH DATA</h3>
         @csrf
-        <div class="row mb-1 col-md-12">
+        <div class="row mb-1 col-md-14">
             <label class="col-sm-2 col-form-label col-form-label-sm">Nama</label>
             <input type="text" class="form-control form-control-sm" name="nama">
         </div>
         @error('nama')
         <div class="message"><span style="color: red">{{ $message }}</span></div>
         @enderror
-        <div class="row mb-1 col-md-12">
+        <div class="row mb-1 col-md-14">
             <label class="col-sm-2 col-form-label col-form-label-sm">Email</label>
             <input type="email" class="form-control form-control-sm" name="email">
         </div>
         @error('email')
         <div class="message"><span style="color: red">{{ $message }}</span></div>
         @enderror
-        <div class="row mb-1 col-md-12">
+        <div class="row mb-1 col-md-14">
             <label class="col-sm-2 col-form-label col-form-label-sm">Username</label>
             <input type="text" class="form-control form-control-sm" name="username">
         </div>
         @error('username')
         <div class="message"><span style="color: red">{{ $message }}</span></div>
         @enderror
-        <div class="row mb-1 col-md-12">
+        <div class="row mb-1 col-md-14">
             <label class="col-sm-2 col-form-label col-form-label-sm">Password</label>
             <input type="password" class="form-control form-control-sm" name="password">
         </div>
         @error('password')
         <div class="message"><span style="color: red">{{ $message }}</span></div>
         @enderror
-        <div class="row mb-1 col-md-12">
-            <label class="col-sm-12 col-form-label col-form-label-sm">No. Handphone</label>
+        <div class="row mb-1 col-md-14">
+            <label class="col-sm-14 col-form-label col-form-label-sm">No. Handphone</label>
             <input type="text" class="form-control form-control-sm" name="phone">
         </div>
         @error('phone')
         <div class="message"><span style="color: red">{{ $message }}</span></div>
         @enderror
-        <div class="row mb-1 col-md-12">
+        <div class="row mb-1 col-md-14">
             <label class="col-sm-2 col-form-label col-form-label-sm">Roles</label>
             <select name="roles" class="form-select">
                 <option value="User">User</option>
                 <option value="Admin">Admin</option>
             </select>
         </div>
-        <div class="row mb-1 col-12">
+        <div class="row mb-1 col-14">
             <button type="submit" class="btn btn-primary">Tambah Data</button>
         </div>
     </form>

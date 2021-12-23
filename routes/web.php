@@ -71,6 +71,9 @@ Route::POST('/users/proses_tambah_data_pengguna', [UserController::class, 'prose
 Route::GET('users/ubah-data/{id}',[UserController::class,'edit_data']);
 //proses ubah data user
 Route::POST('users/ubah-data-pengguna',[UserController::class,'ubah_data']);
+//hapus data
+Route::GET('users/hapus-data/{id}',[UserController::class,'hapus_data']);
+
 //teori tugas
 Route::get('/tabel_mahasiswa', [MhsController::class, 'index']);
 

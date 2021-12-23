@@ -123,7 +123,7 @@ class UserController extends Controller
             $input = $request->all();
             return back()
                 ->withErrors($validated)
-                ->withInput();
+                ->withInput($input);
         } else {
             $user = DB::table('users')
             ->select(('password'))
@@ -157,7 +157,16 @@ class UserController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-            return redirect('/users')->with('berhasil', 'Data Pengguna Berhasil di Simpan');
+            return redirect('/users')->with('berhasil', 'Data Pengguna Berhasil Diubah');
         }
+    }
+
+    public function hapus_data($id)
+    {
+        DB::table('users')
+        ->where('id', '=',$id)
+        ->delete();
+        
+        return redirect('/users')->with('berhasil', 'Data Pengguna Berhasil di dihapus');
     }
 }
