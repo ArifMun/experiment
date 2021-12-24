@@ -30,6 +30,8 @@
 </div>
 @endif
 
+<div class="btn btn-primary"><a href="">Tambah Data Mahasiswa</a></div>
+
 <body>
     <h1 class="text-center">Daftar User</h1>
     <table class="table table-striped">

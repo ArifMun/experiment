@@ -62,6 +62,7 @@ Route::get('/blog/kontak', [BlogController::class, 'kontak']);
 Route::get('/blog', [BlogPersonalController::class, 'home']);
 Route::get('/blog/profil', [BlogPersonalController::class, 'profil']);
 Route::get('/blog/diary', [BlogPersonalController::class, 'diary']);
+
 //daring
 Route::get('/users', [UserController::class, 'index']);
 //validasi
@@ -74,10 +75,13 @@ Route::POST('users/ubah-data-pengguna',[UserController::class,'ubah_data']);
 //hapus data
 Route::GET('users/hapus-data/{id}',[UserController::class,'hapus_data']);
 
-//teori tugas
+//teori tugas mahasiswa
 Route::GET('/tabel_mahasiswa', [MhsController::class, 'index']);
 Route::GET('/tabel_mahasiswa/proses/{id}', [MhsController::class, 'edit_data']);
 Route::POST('/tabel_mahasiswa/proses/ubah', [MhsController::class, 'ubah_data_mahasiswa']);
+Route::POST('/tabel_mahasiswa/proses/tambah', [MhsController::class, 'tambah_data_mahasiswa']);
+Route::GET('/tabel_mahasiswa/tambah', [MhsController::class, 'form']);
+Route::GET('/tabel_mahasiswa/hapus-data/{id}',[MhsController::class,'hapus_mhs']);
 
 //pulsa
 Route::GET('/form/isi_pulsa', [PulsaController::class, 'tambah_pulsa']);
