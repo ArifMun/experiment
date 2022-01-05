@@ -14,6 +14,8 @@ use App\Http\Controllers\BlogPersonalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MhsController;
 use App\Http\Controllers\PulsaController;
+use App\Http\Controllers\RekapController;
+use App\Http\Controllers\TiketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,3 +89,13 @@ Route::GET('/tabel_mahasiswa/hapus-data/{id}',[MhsController::class,'hapus_mhs']
 Route::GET('/form/isi_pulsa', [PulsaController::class, 'tambah_pulsa']);
 Route::POST('/form/nota', [PulsaController::class, 'proses_tambah_pulsa']);
 Route::GET('/form/nota/hasil', [PulsaController::class, 'index']);
+
+//UAS teori
+Route::GET('/tampil/nomer-a', [RekapController::class, 'nomer_a']);
+Route::GET('/tampil/nomer-b', [RekapController::class, 'nomer_b']);
+
+//UAS praktikum
+Route::GET('/tampil/data_tiket', [TiketController::class, 'index']);
+Route::GET('/tampil/data_tiket/cari', [TiketController::class, 'cari']);
+Route::POST('/tampil/proses_pesan_tiket', [TiketController::class, 'pesan_tiket']);
+Route::GET('/tampil/pesan_tiket', [TiketController::class, 'form_tiket']);
