@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tiket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class TiketController extends Controller
 {
     public function index(){
-        $data = DB::table('tiket')
+        // $data = DB::table('tiket')
         // ->select('id','no_reservasi','nama_lengkap','usia','no_tempat_duduk','create_at')
         // ->get();
-        ->paginate(10);
+        // ->paginate(10);
 
+        $data = Tiket::orderBy('create_at','desc')->paginate(10);
         return view('uas.tampil_data_tiket',['tiket'=>$data]);
     }
     
     public function cari(Request $request)
     {
-        $cari = $request->cari;
-
-        $data = DB::table('tiket')
+        $cari = $request->cari;     
+        $data = DB::table('tikets')
         ->where('nama_lengkap','like',"%".$cari."%")
         ->orWhere('usia','like',"%".$cari."%")
         ->orWhere('no_tempat_duduk','like',"%".$cari."%")
@@ -62,29 +63,7 @@ class TiketController extends Controller
             $no_tempat_duduk = $request->input('no_tempat_duduk');
             $vaksin = $request->input('vaksin');
 
-            if($usia >= 12 && $vaksin == "belum"){
-                DB::table('tiket')->insert([
-                    'no_reservasi' => $no_reservasi,
-                    'nama_lengkap' => $nama_lengkap,
-                    'usia' => $usia,
-                    'no_tempat_duduk' => $no_tempat_duduk,
-                    'create_at' => date('Y-m-d H:i:s'),
-                    'vaksin' => $vaksin
-                ]);
-                return redirect('/tampil/data_tiket')->with('notvaksin','Lakukan Vaksin Terlebih Dahulu');
-            }else if($usia <12 ) {
-                DB::table('tiket')->insert([
-                    'no_reservasi' => $no_reservasi,
-                    'nama_lengkap' => $nama_lengkap,
-                    'usia' => $usia,
-                    'no_tempat_duduk' => $no_tempat_duduk,
-                    'create_at' => date('Y-m-d H:i:s'),
-                    'vaksin' => $vaksin
-                ]);
-                return redirect('/tampil/data_tiket')->with('warning','Tidak Boleh Naik kereta Prameks');
-            }else
-
-            DB::table('tiket')->insert([
+            DB::table('tikets')->insert([
                 'no_reservasi' => $no_reservasi,
                 'nama_lengkap' => $nama_lengkap,
                 'usia' => $usia,
@@ -92,7 +71,12 @@ class TiketController extends Controller
                 'create_at' => date('Y-m-d H:i:s'),
                 'vaksin' => $vaksin
             ]);
-
+            
+            if($usia >= 12 && $vaksin == "belum"){
+                return redirect('/tampil/data_tiket')->with('notvaksin','Lakukan Vaksin Terlebih Dahulu');
+            }else if($usia <12 ) {
+                return redirect('/tampil/data_tiket')->with('warning','Tidak Boleh Naik kereta Prameks');
+            }else
             return redirect('/tampil/data_tiket')->with('berhasil','Boleh Naik kereta Prameks');
         }
 
