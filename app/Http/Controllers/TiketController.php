@@ -61,22 +61,40 @@ class TiketController extends Controller
             $nama_lengkap = $request->input('nama_lengkap');
             $usia = $request->input('usia');
             $no_tempat_duduk = $request->input('no_tempat_duduk');
-            $vaksin = $request->input('vaksin');
-
+            $vaksin = $request->input('vaksin');            
+            
+            if($usia >= 12 && $vaksin == "belum"){
+                DB::table('tikets')->insert([
+                    'no_reservasi' => $no_reservasi,
+                    'nama_lengkap' => $nama_lengkap,
+                    'usia' => $usia,
+                    'no_tempat_duduk' => $no_tempat_duduk,
+                    'create_at' => date('Y-m-d H:i:s'),
+                    'vaksin' => $vaksin,
+                    'keterangan' => 'Lakukan Vaksin Terlebih Dahulu'
+                ]);
+                return redirect('/tampil/data_tiket')->with('notvaksin','Lakukan Vaksin Terlebih Dahulu');
+            }else if($usia <12 ) {
+                DB::table('tikets')->insert([
+                    'no_reservasi' => $no_reservasi,
+                    'nama_lengkap' => $nama_lengkap,
+                    'usia' => $usia,
+                    'no_tempat_duduk' => $no_tempat_duduk,
+                    'create_at' => date('Y-m-d H:i:s'),
+                    'vaksin' => $vaksin,
+                    'keterangan' => 'Tidak Boleh Naik kereta Prameks'
+                ]);
+                return redirect('/tampil/data_tiket')->with('warning','Tidak Boleh Naik kereta Prameks');
+            }else
             DB::table('tikets')->insert([
                 'no_reservasi' => $no_reservasi,
                 'nama_lengkap' => $nama_lengkap,
                 'usia' => $usia,
                 'no_tempat_duduk' => $no_tempat_duduk,
                 'create_at' => date('Y-m-d H:i:s'),
-                'vaksin' => $vaksin
+                'vaksin' => $vaksin,
+                'keterangan' => 'Boleh Naik kereta Prameks'
             ]);
-            
-            if($usia >= 12 && $vaksin == "belum"){
-                return redirect('/tampil/data_tiket')->with('notvaksin','Lakukan Vaksin Terlebih Dahulu');
-            }else if($usia <12 ) {
-                return redirect('/tampil/data_tiket')->with('warning','Tidak Boleh Naik kereta Prameks');
-            }else
             return redirect('/tampil/data_tiket')->with('berhasil','Boleh Naik kereta Prameks');
         }
 

@@ -77,7 +77,7 @@
                         <th>No Tempat Duduk</th>
                         <th>create at</th>
                         <th>vaksin</th>
-
+                        <th>Keterangan</th>
                     </tr>
                     <?php $no = 1; ?>
                     @foreach($tiket as $tikets)
@@ -85,7 +85,7 @@
                     if($tikets->vaksin == 'belum' && $tikets->usia>=12){
                     $color = '#ED1C24';
                     }else if($tikets->vaksin =='sudah' && $tikets->usia<12){ $color='#FFFF00' ; }else{ $color='#1AC770'
-                        ; } @endphp <tr style="background-color: <?=$color?>">
+                        ; } @endphp <tr style="background-color: <?=$color;?>">
                         <td>{{$no++}}</td>
                         <td>{{$tikets->no_reservasi}}</td>
                         <td>{{$tikets->nama_lengkap}}</td>
@@ -93,6 +93,7 @@
                         <td>{{$tikets->no_tempat_duduk}}</td>
                         <td>{{$tikets->create_at}}</td>
                         <td>{{$tikets->vaksin}}</td>
+                        <td>{{$tikets->keterangan}}</td>
                         </tr>
                         @endforeach
 
